@@ -5,7 +5,7 @@ Team:
 Дмитро Бережний
 Артем Дідич
 
-![Image alt](https://github.com/creonluv/ruby_laboratory_works/blob/assets/image_2024-02-25_18-27-01.png)
+![Image alt](https://github.com/creonluv/ruby_laboratory_works/blob/lab1/image_2024-02-25_18-27-01.png)
 
 Ця база даних (БД) призначена для форума і містить п'ять таблиць, які взаємодіють між собою:
 
