@@ -1,0 +1,29 @@
+ul {
+    margin: 0;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: center;
+    padding-block: 16px;
+    background-color: #f5f5f5;
+    width: 100%;
+}
+
+.nav-bar__wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+}
+
+.nav-bar__item {
+    list-style: none;
+    padding: 16px;
+    background-color: #eeeeee;
+    border-radius: 8px;
+}
+
+.nav-bar__link {
+    color: #232323;
+    text-decoration: none;
+}

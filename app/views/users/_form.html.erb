@@ -11,27 +11,29 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :username, style: "display: block" %>
-    <%= form.text_field :username %>
-  </div>
+  <div class="form">
+    <div class="form__content">
+      <%= form.label :username, style: "display: block", class: "form__label" %>
+      <%= form.text_field :username, class: "form__field" %>
+    </div>
 
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
-  </div>
+    <div class="form__content">
+      <%= form.label :email, style: "display: block", class: "form__label" %>
+      <%= form.text_field :email, class: "form__field" %>
+    </div>
 
-  <div>
-    <%= form.select :role_id, options_for_select(Role.all, :name) %>
-  </div>
+    <div class="form__content">
+      <%= form.select :role_id, options_for_select(Role.all, :name), class: "form__dropdown" %>
+    </div>
 
-  <div>
-    <%= form.label :password, style: "display: block" %>
-    <%= form.text_field :password %>
-  </div>
+    <div class="form__content">
+      <%= form.label :password, style: "display: block", class: "form__label" %>
+      <%= form.text_field :password, class: "form__field" %>
+    </div>
 
-  <div>
-    <%= form.submit %>
+    <div>
+      <%= form.submit class: "form__button" %>
+    </div>
   </div>
 
 <% end %>
