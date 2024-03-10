@@ -5,7 +5,7 @@
     align-items: center;
 
     padding: 16px;
-    background-color: #e0e0e0;
+    background-color: #596269;
     border-radius: 16px;
     width: 480px;
     gap: 16px;
@@ -18,10 +18,9 @@
 
 .form__label {
     text-align: center;
-    color: blue;
     font-size: 24px;
     font-weight: 500;
-    color: #2E2F30;
+    color: #fff;
 }
 
 .form__content {

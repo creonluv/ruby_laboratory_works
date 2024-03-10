@@ -2,10 +2,13 @@ ul {
     margin: 0;
 }
 
+body {
+    height: 100%;
+}
+
 .nav-bar {
     display: flex;
     justify-content: center;
-    padding-block: 16px;
     background-color: #f5f5f5;
     width: 100%;
 }
@@ -19,7 +22,6 @@ ul {
 .nav-bar__item {
     list-style: none;
     padding: 16px;
-    background-color: #eeeeee;
     border-radius: 8px;
 }
 
