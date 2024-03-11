@@ -1,8 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Posts</h1>
-
 <div id="posts">
+  <div class="container-fluid bg-secondary py-5" style="border-radius: 16px; background-color: #393F45;">
+    <div class="container">
+      <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+        <h1 class="display-4 fw-normal text-body-emphasis">Forum</h1>
+        <p class="fs-5 text-body-secondary">Welcome to our text-based forum! Here, you can engage in discussions on various topics, share experiences, ask questions, and find answers. Our forum is a place for communication and interaction with like-minded individuals.</p>
+      </div>
+
+      <ul class="nav-bar__wrapper">
+        <li class="nav-bar__item"><a href="#" class="nav-bar__link"><%= link_to 'New Role', new_role_path %></a></li>
+        <li class="nav-bar__item"><a href="#" class="nav-bar__link"><%= link_to 'New User', new_user_path %></a></li>
+        <li class="nav-bar__item"><a href="#" class="nav-bar__link"><%= link_to 'New Comment', new_comment_path %></a></li>
+        <li class="nav-bar__item"><a href="#" class="nav-bar__link"><%= link_to 'New Category', new_category_path %></a></li>
+      </ul>
+    </div>
+  </div>
+
   <% @posts.each do |post| %>
     <%= render post %>
     <p>
