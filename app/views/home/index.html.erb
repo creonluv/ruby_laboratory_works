@@ -6,8 +6,8 @@
   <div> Welcome
     <%= current_user.email %>
     <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= button_to "Sign In", new_user_session_path %>
-<% end %>
-</div>
+    <% else %>
+      <%= button_to "Sign In", new_user_session_path %>
+    <% end %>
+  </div>
 <%#= link_to "New category", new_category_path %>
