@@ -1,7 +1,6 @@
 namespace :parsing do
-  desc "Here we will parse page and add categories data to DB"
-  task :parse_categories do
-
+  desc "Parse categories from Reddit and save them to the database"
+  task :parse_categories => :environment do
     url = 'https://www.reddit.com/r/ListOfSubreddits/wiki/listofsubreddits/'
     doc = Nokogiri::HTML(URI.open(url))
 
@@ -16,5 +15,3 @@ namespace :parsing do
     puts "Data successfully saved to Category model."
   end
 end
-
-
