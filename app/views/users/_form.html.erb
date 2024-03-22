@@ -23,7 +23,9 @@
     </div>
 
     <div class="form__content">
-      <%= form.select :role_id, options_for_select(Role.all, :name), class: "form__dropdown" %>
+      <%= form.label :role, style: "display: block", class: "form__label" %>
+      <%#= form.select :role_id, options_for_select(Role.all, :name), class: "form__dropdown" %>
+      <%= form.select :role_id, options_for_select(Role.all.map { |role| [role.name, role.id] }), class: "form__dropdown" %>
     </div>
 
     <div class="form__content">

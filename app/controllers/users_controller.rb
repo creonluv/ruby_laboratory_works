@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_admin!, only: [:new]
   # GET /users or /users.json
   def index
     @users = User.all
   end
 
   # GET /users/1 or /users/1.json
-  def show
-  end
+  # def show
+  # end
 
   # GET /users/new
   def new
@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
+    puts "PARAMS = " + user_params.to_s
     @user = User.new(user_params)
 
     respond_to do |format|
@@ -65,6 +66,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:username, :email, :password)
+      params.require(:user).permit(:username, :email, :password, :role_id)
     end
 end

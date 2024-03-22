@@ -5,5 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable
   # validates :username, presence: true
   # validates :username, uniqueness: true
-  # belongs_to :role
+  has_many :comments
+  has_many :posts
+  belongs_to :role, optional: true
+
+  def admin?
+    role_id == Role.find_by_name("ADMIN").id
+  end
+
 end
