@@ -1,0 +1,26 @@
+<%= stylesheet_link_tag "posts" %>
+
+<p style="color: green"><%= notice %></p>
+
+<% if @post %>
+  <div class="post">
+    <div class="header">
+      <p class="author">
+        Posted by <%= @post.user_id %> on <%= @post.created_at %>
+      </p>
+      <h3><%= "@post.title" %></h3>
+
+    </div>
+    <div class="content">
+      <%= @post.content %>
+    </div>
+    <div class="footer">
+      <a href="<%= "@post.url" %>">Permalink</a>
+      <p class="comments">
+        <a href="<%= "@post.comments_url" %>">Comments</a>
+      </p>
+    </div>
+  </div>
+<% else %>
+  <p>Пост не знайдено.</p>
+<% end %>
