@@ -37,9 +37,8 @@
       </a>
 
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-        <a href="#"><%= link_to 'New Post', new_post_path, class: "me-3 py-2 link-body-emphasis text-decoration-none text-white bg-primary rounded border border-primary p-2" %></a>
-
         <% if user_signed_in? %>
+          <a href="#"><%= link_to 'New Post', new_post_path, class: "me-3 py-2 link-body-emphasis text-decoration-none text-white bg-primary rounded border border-primary p-2" %></a>
           <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "me-3 py-2 link-body-emphasis text-decoration-none" %>
         <% else %>
           <%= button_to "Sign In", new_user_session_path, class: "me-3 py-2 link-body-emphasis text-decoration-none" %>

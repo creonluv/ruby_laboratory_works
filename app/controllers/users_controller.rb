@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :authenticate_admin!, only: [:new]
+
   # GET /users or /users.json
   def index
     @users = User.all
@@ -8,6 +9,11 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+  end
+
+  # GET /profile
+  def show_profile
+    @user = User.find(current_user.id)
   end
 
   # GET /users/1/posts/5
@@ -22,6 +28,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if !admin? && current_user.id != params[:id].to_i
+      redirect_back fallback_location: "/users/#{current_user.id}/edit", alert: "You try to access not your profile."
+    end
   end
 
   # POST /users or /users.json
@@ -43,7 +52,15 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      # puts "role id = " + params[:user][:role_id].to_s
+      # puts "role ADMIN = " + Role.find_by_name("ADMIN").id.to_s
+      # puts "is admin " + (params[:user][:role_id].to_s == Role.find_by(name: "ADMIN").id.to_s).to_s
+      # puts "is karaziner " + params[:user][:email].ends_with?('@karazin.ua').to_s
+      if params[:user][:role_id].to_s == Role.find_by(name: "ADMIN").id.to_s && !params[:user][:email].ends_with?('@karazin.ua')
+        format.html { redirect_back fallback_location: "/users/#{params[:user][:id]}/edit", alert: "You are not authorized to perform this action." }
+        format.html { flash.now[:alert] = "You are not authorized to perform this action."; render :edit, status: :unprocessable_entity }
+        format.json { render json: { error: "You are not authorized to perform this action." }, status: :unauthorized }
+      elsif @user.update(user_params)
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -63,14 +80,20 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def admin?
+    current_user&.admin?
+  end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.require(:user).permit(:username, :email, :password, :role_id)
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(:username, :email, :password, :role_id)
+  end
+
 end

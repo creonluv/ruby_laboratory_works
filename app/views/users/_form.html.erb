@@ -22,11 +22,15 @@
       <%= form.text_field :email, class: "form__field" %>
     </div>
 
-    <div class="form__content">
-      <%= form.label :role, style: "display: block", class: "form__label" %>
-      <%#= form.select :role_id, options_for_select(Role.all, :name), class: "form__dropdown" %>
-      <%= form.select :role_id, options_for_select(Role.all.map { |role| [role.name, role.id] }), class: "form__dropdown" %>
-    </div>
+    <% if current_user && current_user.admin? %>
+      <div class="form__content">
+        <%= form.label :role, style: "display: block", class: "form__label" %>
+        <%#= form.select :role_id, options_for_select(Role.all, :name), class: "form__dropdown" %>
+
+        <%#= form.select :role_id, options_for_select(Role.all.map { |role| [role.name, role.id] }), class: "form__dropdown" %>
+        <%= form.select :role_id, options_for_select(Role.all.map { |role| [role.name, role.id] }, @user.role_id), {}, class: "form__dropdown" %>
+      </div>
+    <% end %>
 
     <div class="form__content">
       <%= form.label :password, style: "display: block", class: "form__label" %>

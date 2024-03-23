@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # root 'home#index', as: 'home'
   # root 'categories#index', as: 'home'
   get '/users/:id/posts/:post_id', to: 'users#show_post', as: 'user_post'
+  get '/profile', to: 'users#show_profile', as: 'user_profile'
 
 
 
