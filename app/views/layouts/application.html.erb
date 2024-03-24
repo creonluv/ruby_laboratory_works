@@ -49,8 +49,12 @@
     </div>
   </header>
 
-  <div class="container-fluid d-flex flex-column" style="min-height: 60vh;">
-    <%= yield %>
+  <div class="container-fluid" style="min-height: 60vh;">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="flex-column">
+        <%= yield %>
+      </div>
+    </div>
   </div>
 
   <footer class="container-fluid pt-4 my-md-5 pt-md-5 border-top">
