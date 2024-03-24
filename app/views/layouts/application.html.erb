@@ -8,6 +8,7 @@
 
   <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlKof6woKMTD0E+0Xr5GO9x2w+gVSA+q2sA6ZyXn0q0hG" crossorigin="anonymous">
   <%= javascript_importmap_tags %>
 </head>
 
@@ -44,19 +45,11 @@
         <% else %>
           <%= button_to "Sign In", new_user_session_path, class: "me-3 py-2 link-body-emphasis text-decoration-none" %>
         <% end %>
-
-        <%# if user_signed_in? %>
-        <%#= link_to "Вийти", destroy_user_session_path, method: :delete, class: "me-3 py-2 link-body-emphasis text-decoration-none" %>
-        <%# else %>
-        <%#= link_to "Sign In", new_user_session_path, class: "me-3 py-2 link-body-emphasis text-decoration-none" %>
-        <%# end %>
-
-
       </nav>
     </div>
   </header>
 
-  <div class="d-flex flex-column" style="min-height: 60vh;">
+  <div class="container-fluid d-flex flex-column" style="min-height: 60vh;">
     <%= yield %>
   </div>
 

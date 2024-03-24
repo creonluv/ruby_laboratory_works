@@ -8,13 +8,15 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create]
 
+  resources :users do
+    get 'posts/:post_id', to: 'users#show_post', as: 'show_post'
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'posts#index', as: 'home'
   # root 'home#index', as: 'home'
   # root 'categories#index', as: 'home'
   get '/users/:id/posts/:post_id', to: 'users#show_post', as: 'user_post'
-
-
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
