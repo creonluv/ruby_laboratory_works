@@ -8,7 +8,7 @@ default: &default
   adapter: postgresql
   database: forum_mpp
   username: postgres
-  password: postgres
+  password: 17032004
 #  host: localhost
   encoding: unicode
 #  port: 3306
