@@ -17,6 +17,24 @@
       <%= form.text_field :content, class: "form__field" %>
     </div>
 
+    <div class="form__content">
+      <%= form.label :category, style: "display: block", class: "form__label" %>
+      <%#= form.select :category_id, options_for_select(Category.all.map { |category| [category.name, category.id] }), {}, class: "form__dropdown" %>
+      <%#= form.text_field :category_name, placeholder: "Enter new category", class: "form__field" %>
+      <%#= form.text_field :category_name, placeholder: "Enter category name or select from the list", class: "form__field" %>
+      <%#= form.select :category_id, options_for_select(Category.all.map { |category| [category.name, category.id] }), { include_blank: true }, class: "form__dropdown" %>
+
+      <% if @post.category_id.present? %>
+        <% current_category_name = Category.find(@post.category_id).name %>
+      <% end %>
+      <%= form.text_field :category_name, value: current_category_name, placeholder: "Enter category name or select from the list", class: "form__field", list: "categories-list" %>
+      <datalist id="categories-list">
+        <% Category.all.each do |category| %>
+          <option value="<%= category.name %>">
+        <% end %>
+      </datalist>
+    </div>
+
     <div>
       <%= form.submit class: "form__button" %>
     </div>

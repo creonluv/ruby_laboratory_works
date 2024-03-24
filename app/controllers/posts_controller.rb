@@ -21,7 +21,12 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
+    category_name = params[:post].delete(:category_name)
+    category = Category.find_or_create_by(name: category_name)
+    @post = current_user.posts.build(post_params.merge(category_id: category.id))
+
+    # @post = current_user.posts.build(post_params)
+    # @post = Post.new(post_params)
 
     respond_to do |format|
       if @post.save
@@ -36,6 +41,9 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
+    category_name = params[:post].delete(:category_name) # Видаляємо category_name з params[:post]
+    category = Category.find_or_create_by(name: category_name)
+    params[:post][:category_id] = category.id
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
@@ -58,13 +66,14 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def post_params
-      params.require(:post).permit(:content)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def post_params
+    params.require(:post).permit(:content, :user_id, :category_name, :category_id)
+  end
 end
