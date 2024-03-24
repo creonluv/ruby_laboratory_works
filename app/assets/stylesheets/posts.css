@@ -1,44 +1,73 @@
-body {
-    font-family: Roboto, Arial, sans-serif;
-    font-size: 16px;
-    color: #eee7e7;
+.post {
+    display: flex;
+    flex-direction: column;
+    margin: 16px auto;
+    background-color: #393F45;
+    border: 1px solid #191B1E;
+    padding: 24px 24px;
+    box-sizing: border-box;
+    width: 100%;
+    justify-content: space-between;
+    border-radius: 16px;
 }
 
-.post {
-    width: 200%; /* Задаємо ширину div на 80% від батьківського контейнера */
-    margin: 20px auto; /* Встановлюємо автоматичні відступи зверху і знизу, а також автоматичні бокові відступи для центрування */
-    background-color: #635f5f;
-    border: 1px solid #0f1b44;
-    padding: 20px 10px;
-    box-shadow: 0px 1px 3px rgba(0,0,0,0.12);
+h5, p {
+    margin: 0;
 }
-.post h3 {
-    font-size: 24px;
+
+.post__header {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: center;
+}
+
+.post__user {
+    font-size: 13px;
+    color: #5C93FD;
+}
+
+.post__time {
+    font-size: 13px;
+}
+
+.post__point {
+    font-size: 6px;
+}
+
+.post__content {
+    margin-top: 16px;
+}
+
+.post__title {
+    font-size: 32px;
     font-weight: 500;
     color: #f1eaea;
 }
 
-.post .author {
+.post__author {
     font-size: 14px;
     color: #f1ebeb;
 }
 
-.post .content {
-    padding: 10px;
+.post__footer {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
 }
 
-.post .footer {
-    text-align: right;
+.post__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    padding: 8px;
+    border-radius: 12px;
+    background-color: #4D545C;
+    transition: 0.1s ease-in-out;
 }
 
-.post .footer a {
-    color: #ffffff;
-    text-decoration: none;
-    background-color: #0073b7;
-    padding: 5px 10px;
-    border-radius: 4px;
-}
-
-.post .footer a:hover {
-    text-decoration: underline;
+.post__button:hover {
+    gap: 8px;
+    background-color: #636D78;
 }

@@ -18,7 +18,9 @@ class UsersController < ApplicationController
 
   # GET /users/1/posts/5
   def show_post
+    @user = User.find(params[:user_id])
     @post = Post.find(params[:post_id])
+    puts "@user: #{@user.inspect}"
   end
 
   # GET /users/new

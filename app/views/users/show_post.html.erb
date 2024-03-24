@@ -1,25 +1,55 @@
 <%= stylesheet_link_tag "posts" %>
+<%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" %>
+<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
 <p style="color: green"><%= notice %></p>
 
 <% if @post %>
   <div class="post">
-    <div class="header">
-      <p class="author">
-        Posted by <%= @post.user_id %> on <%= @post.created_at %>
-      </p>
-      <h3><%= "@post.title" %></h3>
+    <div class="post__header">
+      <div class="post__user" id="<%= "@dom_id user" %>">
+        <p>
+          <%= @user.username %>
+        </p>
+      </div>
 
+      <p class="post__point">●</p>
+
+      <p class="post__time">
+        <%= time_ago_in_words(@post.created_at).gsub(/about /, '') %> ago
+      </p>
     </div>
-    <div class="content">
+
+    <div class="post__content">
+      <h3 class="post__title"><%= "@post.title" %></h3>
       <%= @post.content %>
     </div>
-    <div class="footer">
-      <a href="<%= "@post.url" %>">Permalink</a>
-      <p class="comments">
-        <a href="<%= "@post.comments_url" %>">Comments</a>
-      </p>
+
+    <hr>
+
+    <div class="post__footer">
+      <div class="post__button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+          <g clip-path="url(#clip0_429_11233)">
+            <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 13.4876 3.36093 14.891 4 16.1272L3 21L7.8728 20C9.10904 20.6391 10.5124 21 12 21Z" stroke="#EEE5E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_429_11233">
+              <rect width="24" height="24" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+
+        <%= @post.comments.size %>
+      </div>
+
+      <div class="post__button">
+        <i class="fas fa-link"></i>
+        <a href="<%= "@post.url" %>">Permalink</a>
+      </div>
     </div>
+
+
   </div>
 <% else %>
   <p>Пост не знайдено.</p>
