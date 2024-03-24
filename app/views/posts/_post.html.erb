@@ -1,11 +1,100 @@
-<div id="<%= dom_id post %>">
-  <p>
-    <strong>Content:</strong>
-    <%= post.content %>
-  </p>
-  <p>
-    <strong>Comments:</strong>
-    <%= post.comments.size %>
-  </p>
+<%= stylesheet_link_tag "posts" %>
+<%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" %>
+<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
+<p style="color: green"><%= notice %></p>
+
+<div id="<%= dom_id post %>">
+  <div class="post">
+
+    <% user = User.find_by(id: post.user_id) %>
+
+    <div class="post__header">
+      <div class="post__user" id="<%= "@dom_id user" %>">
+        <p>
+          <%= user.username %>
+        </p>
+      </div>
+
+      <p class="post__point">●</p>
+
+      <p class="post__time">
+        <%= time_ago_in_words(post.created_at).gsub(/about /, '') %> ago
+      </p>
+    </div>
+
+    <div class="post__content">
+      <h3 class="post__title"><%= "@post.title" %></h3>
+      <%= post.content %>
+    </div>
+
+    <hr>
+
+    <div class="post__footer">
+      <div class="post__button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+          <g clip-path="url(#clip0_429_11233)">
+            <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 13.4876 3.36093 14.891 4 16.1272L3 21L7.8728 20C9.10904 20.6391 10.5124 21 12 21Z" stroke="#EEE5E5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+          <defs>
+            <clipPath id="clip0_429_11233">
+              <rect width="24" height="24" fill="white"/>
+            </clipPath>
+          </defs>
+        </svg>
+
+        <%= post.comments.size %>
+      </div>
+
+      <div class="post__button">
+        <i class="fas fa-link"></i>
+        <a href="<%= "/posts/#{post.id}" %>">Show this post</a>
+      </div>
+
+      <div class="post__footer">
+
+        <%= render "comments/form", comment: Comment.new, user_id: user.id, post_id: post.id %>
+        <!--        <div class="form">-->
+        <!--          <div class="form__content">-->
+        <%#= form.label :comment, style: "display: block", class: "form__label" %>
+        <%#= form.text_field :content, class: "form__field" %>
+        <!--          </div>-->
+
+        <!--          <div>-->
+        <%#= form.submit class: "form__button" %>
+        <!--          </div>-->
+        <!--        </div>-->
+
+
+        <%#= render "form", comment: Comment.new %>
+        <!--        <div class="post__button" id="commentButton">-->
+        <!--          Comment-->
+        <!--          <div id="commentMenu" style="display: none;">-->
+        <%#= form_with(model: [post, Comment.new], remote: true) do |form| %>
+        <!--              <div class="field">-->
+        <%#= form.label :content %>
+        <%#= form.text_area :content, class: 'form-control' %>
+        <!--              </div>-->
+        <!--              <div class="actions">-->
+        <%#= form.submit 'Submit', class: 'btn btn-primary' %>
+        <!--              </div>-->
+        <%# end %>
+        <!--          </div>-->
+        <!--        </div>-->
+      </div>
+    </div>
+  </div>
 </div>
+
+
+<script>
+    // JavaScript для показу/приховання меню коментарів при натисканні кнопки Comment
+    document.getElementById('commentButton').addEventListener('click', function () {
+        var menu = document.getElementById('commentMenu');
+        if (menu.style.display === 'none' || menu.style.display === '') {
+            menu.style.display = 'block';
+        } else {
+            menu.style.display = 'none';
+        }
+    });
+</script>

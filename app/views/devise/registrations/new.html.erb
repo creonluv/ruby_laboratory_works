@@ -1,0 +1,40 @@
+<div class="form__wrapper">
+  <h3 class="mb-3 fw-normal">Sign up</h3>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="form-floating mb-3">
+      <%= f.text_field :username, class: "form-control form__input rounded-3", id: "floatingUsername", placeholder: "Username" %>
+      <label for="floatingUsername">Username</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control rounded-3", id: "floatingInput", placeholder: "name@example.com" %>
+      <label for="floatingInput">Email address</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control rounded-3", id: "floatingPassword", placeholder: "Password" %>
+      <% if @minimum_password_length %>
+        <label for="floatingPassword"><%= f.label :password %> (<%= @minimum_password_length %> characters minimum)</label>
+      <% else %>
+        <label for="floatingPassword"><%= f.label :password %></label>
+      <% end %>
+    </div>
+
+    <div class="form-floating mb-3">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control rounded-3", id: "floatingPasswordConfirmation", placeholder: "Password Confirmation" %>
+      <label for="floatingPasswordConfirmation">Password Confirmation</label>
+    </div>
+
+    <div class="form-floating mb-3">
+      <%= f.select :role_id, options_for_select(Role.all.map { |role| [role.name, role.id] }), { include_blank: "Select Role" }, class: "form-control form__dropdown rounded-3", id: "floatingRole" %>
+      <label for="floatingRole">Role</label>
+    </div>
+
+    <button class="btn btn-primary w-100 py-2" type="submit">Sign up</button>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+</div>

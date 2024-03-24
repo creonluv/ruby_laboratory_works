@@ -1,3 +1,9 @@
+<%= stylesheet_link_tag "posts" %>
+<%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" %>
+<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+<p style="color: green"><%= notice %></p>
+
 <%= form_with(model: post) do |form| %>
   <% if post.errors.any? %>
     <div style="color: red">
@@ -19,11 +25,6 @@
 
     <div class="form__content">
       <%= form.label :category, style: "display: block", class: "form__label" %>
-      <%#= form.select :category_id, options_for_select(Category.all.map { |category| [category.name, category.id] }), {}, class: "form__dropdown" %>
-      <%#= form.text_field :category_name, placeholder: "Enter new category", class: "form__field" %>
-      <%#= form.text_field :category_name, placeholder: "Enter category name or select from the list", class: "form__field" %>
-      <%#= form.select :category_id, options_for_select(Category.all.map { |category| [category.name, category.id] }), { include_blank: true }, class: "form__dropdown" %>
-
       <% if @post.category_id.present? %>
         <% current_category_name = Category.find(@post.category_id).name %>
       <% end %>

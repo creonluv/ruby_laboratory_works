@@ -12,12 +12,19 @@ Rails.application.routes.draw do
     get 'posts/:post_id', to: 'users#show_post', as: 'show_post'
   end
 
+  resources :posts do
+    resources :comments, only: [:create] # Означає, що потрібен тільки маршрут для створення коментаря
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root 'posts#index', as: 'home'
   # root 'home#index', as: 'home'
   # root 'categories#index', as: 'home'
   get '/users/:id/posts/:post_id', to: 'users#show_post', as: 'user_post'
   get '/profile', to: 'users#show_profile', as: 'user_profile'
+  get '/users/sign_up', to: 'users#sign_up', as: 'user_sign_up'
+  get '/profile', to: 'users#show_profile', as: 'profile_page'
+
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

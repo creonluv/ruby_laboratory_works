@@ -39,6 +39,7 @@
 
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
         <% if user_signed_in? %>
+          <%= link_to 'Profile', profile_page_path, class: "me-3 py-2 link-body-emphasis text-decoration-none text-white bg-primary rounded border border-primary p-2" %>
           <a href="#"><%= link_to 'New Post', new_post_path, class: "me-3 py-2 link-body-emphasis text-decoration-none text-white bg-primary rounded border border-primary p-2" %></a>
           <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "me-3 py-2 link-body-emphasis text-decoration-none" %>
         <% else %>
